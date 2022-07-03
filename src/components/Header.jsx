@@ -1,6 +1,6 @@
 import React from 'react';
-import logo from './img/pizza-logo.svg'
-import Button from './Button';
+import logo from '../img/pizza-logo.svg'
+import Button from './Button'
 function Header() {
     return (
         <div className="header">
