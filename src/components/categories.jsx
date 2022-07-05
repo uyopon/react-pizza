@@ -11,7 +11,7 @@ function categories({ items }) {
 
     //state нужен для того чтобы оповещать компоненту о том что нужно что-то изменить
    
-    console.log(activeItem)
+    
     return (
         <div className="categories">
             <ul>
