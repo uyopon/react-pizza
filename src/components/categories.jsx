@@ -7,6 +7,7 @@ function categories({ items }) {
     const [activeItem,setActiveItem] = React.useState(0)//в state каждый раз хранится новое значение по умолчанию null
 
     //setActiveItem = функция которая обновляет переменную activeItem
+    //setActiveItem = 1) изменяет ActiveItem 2) говорит реакту отрисовать изменения
 
     //state нужен для того чтобы оповещать компоненту о том что нужно что-то изменить
    
@@ -15,7 +16,7 @@ function categories({ items }) {
         <div className="categories">
             <ul>
                 
-                {items.map((i, index) => <li className={activeItem === index ? "active" : ''} key={`${i}_${index}`} onClick={() => { setActiveItem(index) }}>{i}</li>)}
+                {items && items.map((i, index) => <li className={activeItem === index ? "active" : ''} key={`${i}_${index}`} onClick={() => { setActiveItem(index) }}>{i}</li>)}
 
 
             </ul>
