@@ -1,8 +1,15 @@
 import React from 'react'
+//pop up = выскакивать
+// лучше передавать ссылку на не анонимную функцию для оптимизации
 
 function sortPopUp() {
+
     const [visiblePopUp, setvisiblePopUp] = React.useState(false)
-    console.log(visiblePopUp)
+
+    const toggleVisiblePopup = () =>{setvisiblePopUp(!visiblePopUp)} //анонимная функция- та у которой нет имени ()=> 1
+
+    React.useEffect(()=>{console.log('rendered')},[])//проверяет был ли компонент обновлен,первый раз смонтирован, должен ли компонент удалиться
+
     return (
         <div className="sort">
             <div className="sort__label">
@@ -19,8 +26,10 @@ function sortPopUp() {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={() => setvisiblePopUp(!visiblePopUp)}>популярности</span>
+                <span onClick={toggleVisiblePopup}>популярности</span>
+                
             </div>
+            
 
             {visiblePopUp &&<div className="sort__popup">
                 <ul>
