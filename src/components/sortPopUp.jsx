@@ -4,31 +4,28 @@ function sortPopUp() {
 
     const [visiblePopUp, setvisiblePopUp] = React.useState(false)
 
+    const sortRef = React.useRef()// сортреф- значение при первом инициализации. позволяет сохрнять ссылки на дом елементы для реакт js
+    //React.useRef нужен для того чтобы всегда хранить октуальное значнеие
+
+    console.log(sortRef.current)
+
     const toggleVisiblePopup = () =>{setvisiblePopUp(!visiblePopUp)} //анонимная функция- та у которой нет имени ()=> 1
 
-
-
-
-
-    // React.useEffect(() => {
-
-    //     const listener = () => console.log("fgds")
-    
-    //     document.body.addEventListener('click', listener)
-    
-    //     return () => {
-    //        document.body.removeEventListener('click',listener)
-    //     };
-    // }, [])
-
+    const handleOutsideClick = (e)=>{console.log(e)}
 
     React.useEffect(()=>{
-        console.log(1)
-        document.body.addEventListener('click', ()=>console.log('fgds'))
+        
+        document.body.addEventListener('click',  handleOutsideClick)
+        console.log(sortRef.current)
+       
     },[])
+    //useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
+    //[] список зависимостей.
+    //[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен
+
 
     return (
-        <div className="sort">
+        <div ref= {sortRef} className="sort">
             <div className="sort__label">
                 <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
