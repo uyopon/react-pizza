@@ -2,10 +2,6 @@ import React from 'react';
 import './App.css'
 import {Header, Categories,SortPopUp} from './components'
 
-
-
-
-
 function App() {
   return (
     <div className="wrapper">
