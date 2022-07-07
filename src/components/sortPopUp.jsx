@@ -4,19 +4,25 @@ function sortPopUp() {
 
     const [visiblePopUp, setvisiblePopUp] = React.useState(false)
 
-    const sortRef = React.useRef()// сортреф- значение при первом инициализации. позволяет сохрнять ссылки на дом елементы для реакт js
+    const toggleVisiblePopup = () =>{setvisiblePopUp(!visiblePopUp)} 
+
+    const sortRef = React.useRef()// хранит ссылу на  DOM elem <div ref= {sortRef} className="sort">
     //React.useRef нужен для того чтобы всегда хранить октуальное значнеие
 
-    console.log(sortRef.current)
+    // console.log(sortRef.current) 
 
-    const toggleVisiblePopup = () =>{setvisiblePopUp(!visiblePopUp)} //анонимная функция- та у которой нет имени ()=> 1
+    
 
-    const handleOutsideClick = (e)=>{console.log(e)}
+    const handleOutsideClick228 = (e)=>{
+        if(e.path.includes(sortRef.current)){console.log('hello')}
+
+        
+    } // e = хранит событие path = все блоки через которые произошел клилк
 
     React.useEffect(()=>{
         
-        document.body.addEventListener('click',  handleOutsideClick)
-        console.log(sortRef.current)
+        document.body.addEventListener('click',  handleOutsideClick228) // при кликле вызывается ф  которую мы указали)
+        
        
     },[])
     //useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
@@ -58,7 +64,7 @@ export default sortPopUp
 //pop up = выскакивать
 // лучше передавать ссылку на не анонимную функцию для оптимизации
 
-    //проверяет был ли компонент обновлен,первый раз смонтирован, должен ли компонент удалиться
-    //useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
-    //[] список зависимостей.
-    //[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен
+//проверяет был ли компонент обновлен,первый раз смонтирован, должен ли компонент удалиться
+//useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
+//[] список зависимостей.
+//[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен
