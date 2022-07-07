@@ -1,22 +1,26 @@
 import React, { useState } from 'react'
 
 function categories({ items }) {
-//activeItem = текущее значение(по умолчанию 0)
-//setActiveItem = то что меняет текущее значение (меняет на то что принмиает аргументом)
+    //activeItem = текущее значение(по умолчанию 0)
+    //setActiveItem = то что меняет текущее значение (меняет на то что принмиает аргументом)
 
-    const [activeItem,setActiveItem] = React.useState(0)//в state каждый раз хранится новое значение по умолчанию null
+    const [activeItem, setActiveItem] = React.useState(0)//в state каждый раз хранится новое значение по умолчанию null
 
     //setActiveItem = функция которая обновляет переменную activeItem
     //setActiveItem = 1) изменяет ActiveItem 2) говорит реакту отрисовать изменения
 
     //state нужен для того чтобы оповещать компоненту о том что нужно что-то изменить
-   
-    
+
+
     return (
         <div className="categories">
             <ul>
-                
-                {items && items.map((i, index) => <li className={activeItem === index ? "active" : ''} key={`${i}_${index}`} onClick={() => { setActiveItem(index) }}>{i}</li>)}
+
+                {items && items.map((i, index) =>
+                <li className={activeItem === index ? "active" : ''} 
+                key={`${i}_${index}`} 
+                onClick={() => { setActiveItem(index) }}
+                >{i}</li>)}
 
 
             </ul>

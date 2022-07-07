@@ -10,9 +10,9 @@ function App() {
     <div className="content">
       <div className="container">
         <div className="content__top">
-          <Categories onClickItem = {(item)=> {alert(item)}} items ={['все','Мясные', "Вегетарианская", "Гриль","Острые","Закрытые"]}/>
+          <Categories  items ={['все','Мясные', "Вегетарианская", "Гриль","Острые","Закрытые"]}/>
           
-          <SortPopUp/>
+          <SortPopUp items = {['популярности','цене','алфавиту']}/>
         </div>
         <h2 className="content__title">Все пиццы</h2>
         <div className="content__items">
