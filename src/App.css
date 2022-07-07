@@ -260,7 +260,9 @@ a{
     align-items:center
 }
 .sort__label svg{
-    margin-right:8px
+    margin-right:8px;
+    
+    
 }
 .sort__label b{
     margin-right:8px
