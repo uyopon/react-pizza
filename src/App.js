@@ -7,11 +7,12 @@ import { Routes, Route, Link } from 'react-router-dom';
 function App() {
   const[pizzas,setPizzas] = React.useState([])
   React.useEffect(()=>{
-    fetch('http://localhost:3000/db.json').then(   (resp)=>resp.json()   ).then(   json=>{setPizzas(json.pizzas) ;console.log(json)  } )
+    fetch('http://localhost:3000/db.json').then(   (resp)=>resp.json()   ).then(   json=>{setPizzas(json.pizzas) } )
 
     
 
   },[])
+  console.log(pizzas)
   
   return (
     <div className="wrapper">
@@ -35,8 +36,4 @@ function App() {
 export default App;
 
 
-//fetch('http://localhost:3000/db.json').then((response)=>console.log(response))
-
-//fetch('http://localhost:3000/db.json').then((resp)=>resp.json())
-
-//fetch('http://localhost:3000/db.json').then((resp)=>resp.json()).then(json=>console.log(json)) 
+//=)
