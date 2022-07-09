@@ -12,7 +12,7 @@ function App() {
     
 
   },[])
-  console.log(pizzas)
+  
   
   return (
     <div className="wrapper">
@@ -21,7 +21,7 @@ function App() {
       <div className="content">
 
         <Routes>
-          <Route exact path='/' element={<Home />} />
+          <Route exact path='/' element={<Home pizzas = {pizzas} />} />
           <Route path='cart' element={<Cart />} />
         </Routes>
 
