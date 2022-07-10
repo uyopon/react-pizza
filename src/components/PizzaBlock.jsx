@@ -7,12 +7,12 @@ function PizzaBlock({ imageUrl, name, price, sizes, types }) {
     const sizesNames = [26, 30, 40]
     const typesNames = [0, 1]
 
-    const [activeSize, setActiveSize] = React.useState(0) //create useState before return after function
-    function setsize(index) {
-        setActiveSize(index)
+    const [activeSize, setActiveSize] = React.useState(sizes[0]) //create useState before return after function
+    function setsize(size) {
+        setActiveSize(size)
     }
 
-    const [activeType, setActiveType] = React.useState(0) //create useState before return after function
+    const [activeType, setActiveType] = React.useState(types[0]) //create useState before return after function
     function settype(index) {
         setActiveType(index)
     }
@@ -31,7 +31,7 @@ function PizzaBlock({ imageUrl, name, price, sizes, types }) {
                         typesNames && typesNames.map((type, index) =>
                             <li
                                 key={index}
-                                className={activeType === index ? "active" : ''}
+                                className={classNames({'active':activeType===index,'disabled': !types.includes(index)})} //=)
                                 onClick={() => settype(index)}
                             >{type === 0 ? 'тонкое' : 'традиционное'}</li>)
                     }
@@ -42,8 +42,8 @@ function PizzaBlock({ imageUrl, name, price, sizes, types }) {
                         sizesNames && sizesNames.map((size, index) =>
                             <li
                                 key={index}
-                                className={activeSize === index ? "active" : ''}
-                                onClick={() => setsize(index)}
+                                className={classNames({'active':activeSize===size,'disabled': !sizes.includes(size)})} //=)
+                                onClick={() => setsize(size)}
                             >{size} см.</li>)
                     }
 
