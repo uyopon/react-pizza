@@ -1,6 +1,22 @@
+import classNames from 'classnames'
 import React from 'react'
 
-function PizzaBlock({imageUrl,name,price,sizes}) {
+
+function PizzaBlock({ imageUrl, name, price, sizes, types }) {
+
+    const sizesNames = [26, 30, 40]
+    const typesNames = [0, 1]
+
+    const [activeSize, setActiveSize] = React.useState(0) //create useState before return after function
+    function setsize(index) {
+        setActiveSize(index)
+    }
+
+    const [activeType, setActiveType] = React.useState(0) //create useState before return after function
+    function settype(index) {
+        setActiveType(index)
+    }
+
     return (
         <div className="pizza-block">
             <img
@@ -11,13 +27,26 @@ function PizzaBlock({imageUrl,name,price,sizes}) {
             <h4 className="pizza-block__title">{name}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li className="active">тонкое</li>
-                    <li>традиционное</li>
+                    {
+                        typesNames && typesNames.map((type, index) =>
+                            <li
+                                key={index}
+                                className={activeType === index ? "active" : ''}
+                                onClick={() => settype(index)}
+                            >{type === 0 ? 'тонкое' : 'традиционное'}</li>)
+                    }
+
                 </ul>
                 <ul>
-                    <li className="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {
+                        sizesNames && sizesNames.map((size, index) =>
+                            <li
+                                key={index}
+                                className={activeSize === index ? "active" : ''}
+                                onClick={() => setsize(index)}
+                            >{size} см.</li>)
+                    }
+
                 </ul>
             </div>
             <div className="pizza-block__bottom">
