@@ -5,7 +5,7 @@ import PizzaBlock from '../components/PizzaBlock'
 
 
 function Home({ pizzas }) {
-    console.log(pizzas)
+    
     return (
         <div className="container">
             <div className="content__top">
