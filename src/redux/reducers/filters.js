@@ -5,7 +5,7 @@ const initialState = {
 
 const filters = (state = initialState,action)=> {
     switch (action.type) {
-        case SET_SORT_BY: {
+        case 'SET_SORT_BY': {
             return { ...state, 
                 sortBy:action.payload }
         }

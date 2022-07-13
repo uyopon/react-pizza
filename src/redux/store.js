@@ -1,19 +1,16 @@
-import { createStore } from 'redux'
+import { createStore, combineReducers } from 'redux'
+import filtersReducer from '../redux/reducers/filters'
+import pizzasReducer from '../redux/reducers/pizzas'
 
 
-function counterReducer(state = { value: 0 }, action) {
-    switch (action.type) {
-      case 'counter/incremented':
-        return { value: state.value + 1 }
-      case 'counter/decremented':
-        return { value: state.value - 1 }
-      default:
-        return state
-    }
-  }
 
+const rootReducer = combineReducers({ //объеденяет 2 редуцера в 1
+  filtersReducer,
+  pizzasReducer
+})
 
-  const store =  createStore(counterReducer)
+console.log(rootReducer)
 
-  export default store
-  
+const store = createStore(rootReducer)
+
+export default store

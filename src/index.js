@@ -8,7 +8,7 @@ import store from './redux/store'; // store - объект c методами re
 import { Provider } from 'react-redux'; ////Provider нужен чтобы прокидывать данные из редакса не использя пропсы
 
 
-console.log(store)
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
