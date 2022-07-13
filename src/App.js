@@ -1,39 +1,30 @@
 import React from 'react';
 import './App.css'
-import { Header, Home, Cart, setPizzas } from './components'
+import { Header, Home, Cart,  } from './components'
 import { Routes, Route, } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
-
-
+import { setPizzas } from './components';
 
 class App extends React.Component {
   
-  componentDidMount() {
-    axios.get('http://localhost:3000/db.json').then(   ({ data }) => { store.dispatch(setPizzas(data.pizzas)) }     )
-
-  }
-  
+  componentDidMount(){
+    console.log('hello')
+    axios.get('http://localhost:3000/db.json').then( ({ data }) => { store.dispatch(setPizzas(data.pizzas)) }     )
+    }
   render() {
     
     return (
       <div className="wrapper">
         <Header />
-
         <div className="content">
-
           <Routes>
             <Route exact path='/' element={<Home items={this.props.items} />} />
             <Route path='cart' element={<Cart />} />
           </Routes>
-
-
-
         </div>
       </div>
-
     )
-
   }
 }
 /////////////////////////////////////////App теперь следит за изменениями хранилищя
@@ -53,6 +44,10 @@ let mapDispatchtoProps = (dispatch) => { // f вызывается каждый 
 }
 
 export default connect(mapStateToProps, mapDispatchtoProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
+
+
+
+
 
 
 
