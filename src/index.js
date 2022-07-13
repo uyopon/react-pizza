@@ -17,8 +17,8 @@ root.render(
 
   <React.StrictMode>
     <BrowserRouter>
-
-      <Provider store = {store}>
+    {/* провидер нужен чтобы у всего app былдоступ к объекту store  */}
+      <Provider store = {store}> 
         <App/>
       </Provider>  
 
