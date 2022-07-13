@@ -1,20 +1,24 @@
 import React from 'react';
 import './App.css'
-import { Header, Home, Cart,  } from './components'
+import { Header, Home, Cart, } from './components'
 import { Routes, Route, } from 'react-router-dom';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setPizzas } from './components';
 
 class App extends React.Component {
+
   
-  componentDidMount(){
-    console.log('hello')
-    axios.get('http://localhost:3000/db.json').then( ({ data }) => { store.dispatch(setPizzas(data.pizzas)) }     )
-    }
+  componentDidMount() {
+    // console.log('hello')
+    // axios.get('http://localhost:3000/db.json').then(({ data }) => { store.dispatch(setPizzas(data.pizzas)) })
+
+    axios.get('http://localhost:3000/db.json').then(({ data }) => { this.props.dispatch(setPizzas(data.pizzas)) })
+  }
   render() {
     
     return (
+      
       <div className="wrapper">
         <Header />
         <div className="content">
@@ -34,16 +38,16 @@ let mapStateToProps = (state) => {///f передает пропсы  в кла�
   }
 }
 
-let mapDispatchtoProps = (dispatch) => { // f вызывается каждый раз когда state меняется
-  return {
-    
+// let mapDispatchtoProps = (dispatch) => { // f вызывается каждый раз когда state меняется
+//   return {
 
 
-  }
 
-}
+//   }
 
-export default connect(mapStateToProps, mapDispatchtoProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
+// }
+
+export default connect(mapStateToProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
 
 
 

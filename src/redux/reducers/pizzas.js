@@ -5,7 +5,7 @@ const initialState = {
 
 const pizzas = (state = initialState,action)=> {
 
-    console.log(action)
+    console.log(state)
     
 
     switch (action.type) {
