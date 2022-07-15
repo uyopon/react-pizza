@@ -10,10 +10,10 @@ class App extends React.Component {
 
   
   componentDidMount() {
-    // console.log('hello')
+    console.log('hello')
     // axios.get('http://localhost:3000/db.json').then(({ data }) => { store.dispatch(setPizzas(data.pizzas)) })
 
-    axios.get('http://localhost:3000/db.json').then(({ data }) => { this.props.dispatch(setPizzas(data.pizzas)) })
+    axios.get('http://localhost:3000/db.json').then(({ data }) => { this.props.setPizzas(data.pizzas) })
   }
   render() {
     
@@ -32,22 +32,24 @@ class App extends React.Component {
   }
 }
 /////////////////////////////////////////App теперь следит за изменениями хранилищя
-let mapStateToProps = (state) => {///f передает пропсы  в классовый компонент=)
+
+const mapStateToProps = (state) => {///f передает пропсы  в классовый компонент=)
   return {
     items: state.pizzasReducer.items
   }
 }
 
-// let mapDispatchtoProps = (dispatch) => { // f вызывается каждый раз когда state меняется
-//   return {
+const mapDispatchToProps = (dispatch) => {      // f вызывается каждый раз когда state меняется
+  return {
+    setPizzas: (items)=> dispatch(setPizzas(items))
+
+  }
+
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
 
 
-
-//   }
-
-// }
-
-export default connect(mapStateToProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
 
 
 
