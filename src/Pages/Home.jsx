@@ -1,11 +1,16 @@
 import React from 'react'
 import { Categories, SortPopUp } from '../components'
 import PizzaBlock from '../components/PizzaBlock'
+import { useSelector,  } from 'react-redux'
 
 
+function Home({  }) {
+    const {items} =useSelector(({pizzas }) => { // из этого объ вытаскивает только items // useSelector = подписка на хранилищие
 
-function Home({ items }) {
-    console.log(items)
+        return{
+          items: pizzas.items,  //useSelector ретурнит этот объ
+        }
+      })
     
     return (
         <div className="container">
