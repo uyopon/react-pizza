@@ -7,7 +7,9 @@ const pizzas = (state = initialState,action)=> {
     
     switch (action.type) {
         case 'SET_PIZZAS': 
-        console.log('228')
+
+        console.log(state)
+
             return { 
                 ...state, 
                 items:action.payload,
