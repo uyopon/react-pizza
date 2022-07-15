@@ -18,7 +18,7 @@ function Home({ items }) {
             <div className="content__items">
 
 
-                {items & items.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
+                {items && items.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
                 
 
 
