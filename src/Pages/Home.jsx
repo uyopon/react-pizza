@@ -17,7 +17,7 @@ function Home({ pizzas }) {
             <div className="content__items">
 
 
-                {pizzas.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
+                {pizzas & pizzas.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
                 
 
 

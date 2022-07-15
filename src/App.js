@@ -3,51 +3,80 @@ import './App.css'
 import { Header, Home, Cart, } from './components'
 import { Routes, Route, } from 'react-router-dom';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import { setPizzas } from './components';
+import { useSelector, useDispatch } from 'react-redux'
 
-class App extends React.Component {
+function App({items}){
 
-  
-  componentDidMount() {
-    console.log('hello')
-    // axios.get('http://localhost:3000/db.json').then(({ data }) => { store.dispatch(setPizzas(data.pizzas)) })
+  React.useEffect(//useEffec вызывается при первом рендере
+    ()=>{
+      axios.get('http://localhost:3000/db.json').then(({ data }) => { setPizzas(data.pizzas) })
+    }
+    ,[]
+  )
 
-    axios.get('http://localhost:3000/db.json').then(({ data }) => { this.props.setPizzas(data.pizzas) })
-  }
-  render() {
-    
-    return (
+  console.log('hi')
+      return (
+      
       
       <div className="wrapper">
         <Header />
         <div className="content">
           <Routes>
-            <Route exact path='/' element={<Home items={this.props.items} />} />
+            <Route exact path='/' element={<Home items={[]} />} />
             <Route path='cart' element={<Cart />} />
           </Routes>
         </div>
       </div>
     )
-  }
 }
-/////////////////////////////////////////App теперь следит за изменениями хранилищя
+export default  App
 
-const mapStateToProps = (state) => {///f передает пропсы  в классовый компонент=)
-  return {
-    items: state.pizzasReducer.items
-  }
-}
+// class App extends React.Component {
 
-const mapDispatchToProps = (dispatch) => {      // f вызывается каждый раз когда state меняется
-  return {
-    setPizzas: (items)=> dispatch(setPizzas(items))
+  
+//   componentDidMount() {
+//     console.log('hello')
+//     // axios.get('http://localhost:3000/db.json').then(({ data }) => { store.dispatch(setPizzas(data.pizzas)) })
 
-  }
+//     axios.get('http://localhost:3000/db.json').then(({ data }) => { this.props.setPizzas(data.pizzas) })
+//   }
+//   render() {
+//     console.log(this.props)
+    
+//     return (
+      
+      
+//       <div className="wrapper">
+//         <Header />
+//         <div className="content">
+//           <Routes>
+//             <Route exact path='/' element={<Home items={this.props.items} />} />
+//             <Route path='cart' element={<Cart />} />
+//           </Routes>
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+// /////////////////////////////////////////App теперь следит за изменениями хранилищя
 
-}
+// const mapStateToProps = (state) => {///f передает пропсы  в классовый компонент=)
+//   return {
+//     items: state.pizzasReducer.items,
+//     filters: state.filters
+//   }
+// }
 
-export default connect(mapStateToProps,mapDispatchToProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
+// const mapDispatchToProps = (dispatch) => {      // f вызывается каждый раз когда state меняется
+//   return {
+//     setPizzas: (items)=> dispatch(setPizzas(items))
+
+//   }
+
+// }
+
+// export default connect(mapStateToProps,mapDispatchToProps)(App) //connect  нужен чтобыпередавать пропсы в классовую компоненту
 
 
 
@@ -92,4 +121,4 @@ export default connect(mapStateToProps,mapDispatchToProps)(App) //connect  ну�
 //   )
 // }
 
-// export default App;
+//;
