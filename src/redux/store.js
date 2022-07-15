@@ -5,8 +5,8 @@ import pizzasReducer from '../redux/reducers/pizzas'
 
 
 const rootReducer = combineReducers({ //объеденяет 2 редуцера в 1
-  filtersReducer:filtersReducer,
-  filtersReducer:pizzasReducer
+  filters:filtersReducer,
+  pizzas:pizzasReducer
 })
 
 

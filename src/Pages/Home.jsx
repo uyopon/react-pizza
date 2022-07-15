@@ -4,7 +4,8 @@ import PizzaBlock from '../components/PizzaBlock'
 
 
 
-function Home({ pizzas }) {
+function Home({ items }) {
+    console.log(items)
     
     return (
         <div className="container">
@@ -17,7 +18,7 @@ function Home({ pizzas }) {
             <div className="content__items">
 
 
-                {pizzas & pizzas.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
+                {items & items.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
                 
 
 

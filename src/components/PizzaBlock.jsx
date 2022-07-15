@@ -3,6 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function PizzaBlock({ imageUrl, name, price, sizes, types }) {
+    
 
     const sizesNames = [26, 30, 40]
     const typesNames = [0, 1]
