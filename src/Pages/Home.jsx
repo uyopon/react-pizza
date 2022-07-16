@@ -1,20 +1,28 @@
 import React from 'react'
 import { Categories, SortPopUp } from '../components'
 import PizzaBlock from '../components/PizzaBlock'
-import { useSelector,  } from 'react-redux'
+import { useSelector,useDispatch  } from 'react-redux'
+import { setCategory } from '../redux/action/filters'
 
 
 function Home({  }) {
+
+    const dispatch = useDispatch()
     
     React.useEffect(()=>console.log('hi'))
 
-    const {items} =useSelector(({pizzas }) => { // из этого объ вытаскивает только items // useSelector = подписка на хранилищие
+    const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
 
-        return{
-          items: pizzas.items,  //useSelector ретурнит этот объ
-        }
-      })
-    
+    // const {items} =useSelector(({pizzas }) => { // из этого объ вытаскивает только items // useSelector = подписка на хранилищие
+
+    //     return{
+    //       items: pizzas.items,  //useSelector ретурнит этот объ
+    //     }
+    //   })
+
+    const onSelectCategory = (index)=>{
+        dispatch(setCategory(index))
+    }
 
 
     return (
@@ -23,7 +31,7 @@ function Home({  }) {
 
                 <Categories 
                 items={['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]}
-                onClickItem={(name)=>console.log(name)} 
+                onClickItem={onSelectCategory} 
                 />
 
                 <SortPopUp items={[{name:'популярности',type:'popular'},{name:'цене',type: 'price'}, {name:'алфавиту',type: 'alphabet'}]} />
