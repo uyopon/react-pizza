@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function categories({ items }) {
+function categories({ items, onClickItem }) {
     //activeItem = текущее значение(по умолчанию 0)
     //setActiveItem = то что меняет текущее значение (меняет на то что принмиает аргументом)
 
@@ -10,6 +10,11 @@ function categories({ items }) {
     //setActiveItem = 1) изменяет ActiveItem 2) говорит реакту отрисовать изменения
 
     //state нужен для того чтобы оповещать компоненту о том что нужно что-то изменить
+    const onSelectItem = (index) => {
+        setActiveItem(index)
+        onClickItem(index)
+
+    }
 
 
     return (
@@ -17,10 +22,10 @@ function categories({ items }) {
             <ul>
 
                 {items && items.map((i, index) =>
-                <li className={activeItem === index ? "active" : ''} 
-                key={`${i}_${index}`} 
-                onClick={() => { setActiveItem(index) }}
-                >{i}</li>)}
+                    <li className={activeItem === index ? "active" : ''}
+                        key={`${i}_${index}`}
+                        onClick={() => { onSelectItem(index) }}
+                    >{i}</li>)}
 
 
             </ul>
