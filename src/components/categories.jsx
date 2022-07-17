@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 
-function categories({ items, onClickItem }) {
+function categories({ items, onClickItem}) {
     //activeItem = текущее значение(по умолчанию 0)
     //setActiveItem = то что меняет текущее значение (меняет на то что принмиает аргументом)
+
+    
 
     const [activeItem, setActiveItem] = React.useState(0)//в state каждый раз хранится новое значение по умолчанию null
 

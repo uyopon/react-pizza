@@ -4,13 +4,10 @@ import PizzaBlock from '../components/PizzaBlock'
 import { useSelector,useDispatch  } from 'react-redux'
 import { setCategory } from '../redux/action/filters'
 
-
 function Home({  }) {
 
     const dispatch = useDispatch()
     
-    React.useEffect(()=>console.log('hi'))
-
     const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
 
     // const {items} =useSelector(({pizzas }) => { // из этого объ вытаскивает только items // useSelector = подписка на хранилищие
@@ -24,13 +21,12 @@ function Home({  }) {
         dispatch(setCategory(index))
     }
 
-
     return (
         <div className="container">
             <div className="content__top">
 
-                <Categories 
-                items={['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]}
+                <Categories //каждый раз когда будут меняться пиццы Categories будет делать ререндер. 
+                items={['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]}// тут по-сути ничего не меняется. реакт сверяет пропсы. смотрит изменилась у них ссылка или нет. если ссылка изменилась- нужно производить ререндер. под ссылками подразумеается изменения данных в переменных или своствах
                 onClickItem={onSelectCategory} 
                 />
 
@@ -40,12 +36,8 @@ function Home({  }) {
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
 
-
                 {items && items.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
                 
-
-
-
             </div>
         </div>
     )
