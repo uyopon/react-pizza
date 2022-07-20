@@ -10,6 +10,7 @@ function App(){
 
   const dispatch = useDispatch()
 
+  // window.test = function(){axios.get('http://localhost:3000/db.json').then(({ data }) => {dispatch(setPizzas(data.pizzas)) })}
   
   React.useEffect(
     ()=>{axios.get('http://localhost:3000/db.json').then(({ data }) => {dispatch(setPizzas(data.pizzas)) })}

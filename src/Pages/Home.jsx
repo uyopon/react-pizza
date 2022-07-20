@@ -4,6 +4,11 @@ import PizzaBlock from '../components/PizzaBlock'
 import { useSelector,useDispatch  } from 'react-redux'
 import { setCategory } from '../redux/action/filters'
 
+
+const categoryNames = ['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]
+
+const sortItems = [{name:'популярности',type:'popular'},{name:'цене',type: 'price'}, {name:'алфавиту',type: 'alphabet'}]
+
 function Home({  }) {
 
     const dispatch = useDispatch()
@@ -17,11 +22,11 @@ function Home({  }) {
     //     }
     //   })
 
-    const onSelectCategory = React.useCallback((index)=>{ //всесто создания каждый раз анонимной функции она мемоизируется.
+    const onSelectCategory = React.useCallback((index)=>{ //всесто создания каждый раз анонимной функции она мемоизируется. то есть ссылка на эту функцию больше не меняется
         dispatch(setCategory(index))
     },[])
 
-    const categoryNames = ['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]
+    
 
     return (
         <div className="container">
@@ -32,7 +37,7 @@ function Home({  }) {
                 onClickItem={onSelectCategory} 
                 />
 
-                <SortPopUp items={[{name:'популярности',type:'popular'},{name:'цене',type: 'price'}, {name:'алфавиту',type: 'alphabet'}]} />
+                <SortPopUp items={sortItems} />
 
             </div>
             <h2 className="content__title">Все пиццы</h2>

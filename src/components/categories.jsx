@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function categories({ items, onClickItem}) {
+const categories = React.memo(({ items, onClickItem})=> {
     //activeItem = текущее значение(по умолчанию 0)
     //setActiveItem = то что меняет текущее значение (меняет на то что принмиает аргументом)
 
@@ -34,8 +34,9 @@ function categories({ items, onClickItem}) {
         </div>
     )
 }
-
+)
 export default categories
+
 //rfce =)
 
 
