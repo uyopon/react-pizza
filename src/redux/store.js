@@ -1,8 +1,9 @@
-import { createStore, combineReducers } from 'redux'
+import { createStore, combineReducers,compose,applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
 import filtersReducer from '../redux/reducers/filters'
 import pizzasReducer from '../redux/reducers/pizzas'
 
-
+const composeEnhancers = compose
 
 const rootReducer = combineReducers({ //объеденяет 2 редуцера в 1
   filters:filtersReducer,
@@ -11,7 +12,7 @@ const rootReducer = combineReducers({ //объеденяет 2 редуцера 
 
 
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunk)))
 
 window.store=store
 
