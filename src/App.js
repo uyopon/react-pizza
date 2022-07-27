@@ -13,13 +13,13 @@ function App(){
 
   const dispatch = useDispatch()
 
-  // window.test = function(){axios.get('http://localhost:3000/db.json').then(({ data }) => {dispatch(setPizzas(data.pizzas)) })}
   
-  React.useEffect(()=>{
-    
-    console.log(fetchPizzas())},
-    []
-  )                                     //useEffec вызывается при первом рендере
+  
+  React.useEffect(
+    // ()=>{axios.get('http://localhost:3001/pizzas').then(({ data }) => {dispatch(setPizzas(data.pizzas)) })}
+    ()=>{axios.get('http://localhost:3001/pizzas').then(({ data }) => {dispatch(setPizzas(data))})}
+    ,[]
+  )                              //useEffec вызывается при первом рендере
 
       return (
       <div className="wrapper">

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 export const fetchPizzas = (items) => {
-    ()=>{axios.get('http://localhost:3000/db.json').then(({ data }) => {setPizzas(data.pizzas) })}
+    ()=>{axios.get('http://localhost:3000/db.json').then(({ data }) => {data })}
 }
 
 
@@ -13,6 +13,7 @@ export const setPizzas = (items) => {
         {type: 'SET_PIZZAS',payload: items}
     )
 }
+
 
 
 
