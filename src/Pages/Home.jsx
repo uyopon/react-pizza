@@ -3,7 +3,7 @@ import { Categories, SortPopUp } from '../components'
 import PizzaBlock from '../components/PizzaBlock'
 import { useSelector,useDispatch  } from 'react-redux'
 import { setCategory } from '../redux/action/filters'
-
+import {fetchPizzas}  from '../redux/action/pizzas';
 
 const categoryNames = ['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]
 
@@ -15,12 +15,14 @@ function Home({  }) {
     
     const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
 
-    // const {items} =useSelector(({pizzas }) => { // из этого объ вытаскивает только items // useSelector = подписка на хранилищие
 
-    //     return{
-    //       items: pizzas.items,  //useSelector ретурнит этот объ
-    //     }
-    //   })
+    React.useEffect(()=>{
+        dispatch(fetchPizzas())
+        
+    
+      },[]
+      )                              
+    
 
     const onSelectCategory = React.useCallback((index)=>{ //всесто создания каждый раз анонимной функции она мемоизируется. то есть ссылка на эту функцию больше не меняется
         dispatch(setCategory(index))
