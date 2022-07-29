@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 
-
-export const fetchPizzas = (items) => {
-    ()=>{axios.get('http://localhost:3000/db.json').then(({ data }) => {data })}
+//fetchPizzas теперь ассинхрононный:)
+export const fetchPizzas = () =>(dispatch)=> { //fetch -  принести данные используют в контексте обращения к серверу
+    axios.get('http://localhost:3001/pizzas').then(({ data }) => {
+        dispatch(setPizzas(data))
+    })
 }
 
 
