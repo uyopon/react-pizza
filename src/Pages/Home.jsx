@@ -16,13 +16,14 @@ function Home({  }) {
     
     const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
     const isLoaded = useSelector(({pizzas }) => pizzas.isLoaded )
+    const {category,sortBy} = useSelector(({filters }) => filters )
 
 
     React.useEffect(()=>{
         dispatch(fetchPizzas())
         
     
-      },[]
+      },[category]
       )                              
     
 
@@ -48,7 +49,7 @@ function Home({  }) {
             <div className="content__items">
 
                 {isLoaded && items.map((pizza)=><PizzaBlock key = {pizza.id} isLoading = {true} {...pizza}/> )}
-                {Array(10).fill(<PizzaLoadingBlock/>)}
+                {!isLoaded &&Array(10).fill(0).map((i,index)=><PizzaLoadingBlock key= {index}/>)}
                 
             </div>
         </div>
