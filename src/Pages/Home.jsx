@@ -1,6 +1,7 @@
 import React from 'react'
 import { Categories, SortPopUp } from '../components'
-import PizzaBlock from '../components/PizzaBlock'
+import PizzaBlock from '../components/PizzaBlock/PizzaBlock'
+import PizzaLoadingBlock from '../components/PizzaBlock/PizzaLoadingBlock'
 import { useSelector,useDispatch  } from 'react-redux'
 import { setCategory } from '../redux/action/filters'
 import {fetchPizzas}  from '../redux/action/pizzas';
@@ -14,6 +15,7 @@ function Home({  }) {
     const dispatch = useDispatch()
     
     const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
+    const isLoaded = useSelector(({pizzas }) => pizzas.isLoaded )
 
 
     React.useEffect(()=>{
@@ -45,7 +47,8 @@ function Home({  }) {
             <h2 className="content__title">Все пиццы</h2>
             <div className="content__items">
 
-                {items && items.map((pizza)=><PizzaBlock key = {pizza.id} {...pizza}/> )}
+                {isLoaded && items.map((pizza)=><PizzaBlock key = {pizza.id} isLoading = {true} {...pizza}/> )}
+                {Array(10).fill(<PizzaLoadingBlock/>)}
                 
             </div>
         </div>

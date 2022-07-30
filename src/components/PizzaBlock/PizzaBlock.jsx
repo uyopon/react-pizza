@@ -1,9 +1,14 @@
 import classNames from 'classnames'
 import React from 'react'
 import PropTypes from 'prop-types'
-import ContentLoader from "react-content-loader"
+import PizzaLoadingBlock from './PizzaLoadingBlock'
 
-function PizzaBlock({ imageUrl, name, price, sizes, types }) {
+
+
+function PizzaBlock({ imageUrl, name, price, sizes, types,  }) {
+    
+
+    
    
     
 
@@ -107,9 +112,11 @@ PizzaBlock.propTypes = {
     types: PropTypes.arrayOf(PropTypes.number).isRequired,
     sizes: PropTypes.arrayOf(PropTypes.number).isRequired,
     
+    
 
 }
 PizzaBlock.defaultProps= {
+    
     
 }
 
