@@ -1,22 +1,20 @@
 import React, { useState } from 'react'
 
-const categories = React.memo(({ items, onClickItem})=> {
+
+
+const categories = React.memo(({activeItem, items, onClickItem, activeCategory})=> {
     //activeItem = текущее значение(по умолчанию 0)
     //setActiveItem = то что меняет текущее значение (меняет на то что принмиает аргументом)
 
     
 
-    const [activeItem, setActiveItem] = React.useState(0)//в state каждый раз хранится новое значение по умолчанию null
+    // const [activeItem, setActiveItem] = React.useState(0)//в state каждый раз хранится новое значение по умолчанию null
 
     //setActiveItem = функция которая обновляет переменную activeItem
     //setActiveItem = 1) изменяет ActiveItem 2) говорит реакту отрисовать изменения
 
     //state нужен для того чтобы оповещать компоненту о том что нужно что-то изменить
-    const onSelectItem = (index) => {
-        setActiveItem(index)
-        onClickItem(index)
 
-    }
 
 
     return (
@@ -24,9 +22,9 @@ const categories = React.memo(({ items, onClickItem})=> {
             <ul>
 
                 {items && items.map((i, index) =>
-                    <li className={activeItem === index ? "active" : ''}
+                    <li className={activeCategory=== index ? "active" : ''}
                         key={`${i}_${index}`}
-                        onClick={() => { onSelectItem(index) }}
+                        onClick={() => { onClickItem(index) }}
                     >{i}</li>)}
 
 

@@ -27,7 +27,7 @@ const  sortPopUp= React.memo(({items,sortBy})=> {
     },[])
     //useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
     //[] список зависимостей.
-    //[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен
+    //[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен.
 
     const [activeItem,setActiveItem] = React.useState(0)
 

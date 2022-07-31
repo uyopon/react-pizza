@@ -40,6 +40,7 @@ function Home({  }) {
                 <Categories //каждый раз когда будут меняться пиццы Categories будет делать ререндер. 
                 items={categoryNames}// тут по-сути ничего не меняется. реакт сверяет пропсы. смотрит изменилась у них ссылка или нет. если ссылка изменилась- нужно производить ререндер. под ссылками подразумеается изменения данных в переменных или своствах
                 onClickItem={onSelectCategory} 
+                activeCategory = {category}
                 />
 
                 <SortPopUp items={sortItems} sortBy={sortBy} />
