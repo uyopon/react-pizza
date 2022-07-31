@@ -1,6 +1,6 @@
 import React from 'react'
 
-const  sortPopUp= React.memo(({items,sortBy})=> {
+const  sortPopUp= React.memo(({items,sortBy,activeItem})=> {
 
     const [visiblePopUp, setvisiblePopUp] = React.useState(false)
 
@@ -29,10 +29,10 @@ const  sortPopUp= React.memo(({items,sortBy})=> {
     //[] список зависимостей.
     //[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен.
 
-    const [activeItem,setActiveItem] = React.useState(0)
+    
 
     const onSelectItem = (index)=> {
-        setActiveItem(index)
+        sortBy(index)
         setvisiblePopUp(false)
 
     }
