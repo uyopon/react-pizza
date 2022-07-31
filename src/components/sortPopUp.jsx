@@ -1,6 +1,6 @@
 import React from 'react'
 
-const  sortPopUp= React.memo(({items,sortBy,activeItem})=> {
+const  sortPopUp= React.memo(({items,activeItem,seActiveItem})=> {
 
     const [visiblePopUp, setvisiblePopUp] = React.useState(false)
 
@@ -8,36 +8,22 @@ const  sortPopUp= React.memo(({items,sortBy,activeItem})=> {
 
     const sortRef = React.useRef()// хранит ссылу на  DOM elem <div ref= {sortRef} className="sort">
     //React.useRef нужен для того чтобы всегда хранить октуальное значнеие
-
     // console.log(sortRef.current) 
 
-    
-
-    const handleOutsideClick228 = (e)=>{
-        if(!e.path.includes(sortRef.current)){setvisiblePopUp(false)}
-
-        
-    } // e = хранит событие path = все блоки через которые произошел клилк
+    const handleOutsideClick228 = (e)=>{// e = хранит событие path = все блоки через которые произошел клилк
+        if(!e.path.includes(sortRef.current)){setvisiblePopUp(false)}} 
 
     React.useEffect(()=>{
-        
         document.body.addEventListener('click',  handleOutsideClick228) // при кликле вызывается ф  которую мы указали)
-        
-       
     },[])
     //useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
     //[] список зависимостей.
     //[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен.
 
-    
-
     const onSelectItem = (index)=> {
-        sortBy(index)
-        setvisiblePopUp(false)
-
-    }
+        seActiveItem(index)
+        setvisiblePopUp(false)}
     const activeLabel = items[activeItem].name
-
 
     return (
         <div ref= {sortRef} className="sort">

@@ -3,7 +3,7 @@ import { Categories, SortPopUp } from '../components'
 import PizzaBlock from '../components/PizzaBlock/PizzaBlock'
 import PizzaLoadingBlock from '../components/PizzaBlock/PizzaLoadingBlock'
 import { useSelector,useDispatch  } from 'react-redux'
-import { setCategory } from '../redux/action/filters'
+import { seActiveItem, setCategory } from '../redux/action/filters'
 import {fetchPizzas}  from '../redux/action/pizzas';
 
 const categoryNames = ['все', 'Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]
@@ -16,15 +16,24 @@ function Home({  }) {
     
     const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
     const isLoaded = useSelector(({pizzas }) => pizzas.isLoaded )
-    const {category,sortBy} = useSelector(({filters }) => filters )
+    const {category,activeItem} = useSelector(({filters }) => filters )
 
 
     React.useEffect(()=>{
         dispatch(fetchPizzas())
         
     
-      },[category]
-      )                              
+      },[category,activeItem]
+      )
+      
+      
+        function setctiveItem2(index){
+            dispatch(seActiveItem(index))
+
+        }
+        
+    
+      
     
 
     const onSelectCategory = React.useCallback((index)=>{ //всесто создания каждый раз анонимной функции она мемоизируется. то есть ссылка на эту функцию больше не меняется
@@ -43,7 +52,7 @@ function Home({  }) {
                 activeCategory = {category}
                 />
 
-                <SortPopUp items={sortItems} sortBy={sortBy} activeItem = {0}/>
+                <SortPopUp items={sortItems}  activeItem = {activeItem} seActiveItem={setctiveItem2}/>
 
             </div>
             <h2 className="content__title">Все пиццы</h2>
