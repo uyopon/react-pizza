@@ -42,7 +42,7 @@ function Home({  }) {
                 onClickItem={onSelectCategory} 
                 />
 
-                <SortPopUp items={sortItems} />
+                <SortPopUp items={sortItems} sortBy={sortBy} />
 
             </div>
             <h2 className="content__title">Все пиццы</h2>
@@ -55,6 +55,7 @@ function Home({  }) {
         </div>
     )
 }
+
 
 export default Home
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const  sortPopUp= React.memo(({items})=> {
+const  sortPopUp= React.memo(({items,sortBy})=> {
 
     const [visiblePopUp, setvisiblePopUp] = React.useState(false)
 
