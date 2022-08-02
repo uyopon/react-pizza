@@ -64,14 +64,14 @@ const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClick
   );
 });
 
+SortPopup.propTypes = {
+  activeSortType: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClickSortType: PropTypes.func.isRequired,
+};
+
+SortPopup.defaultProps = {
+  items: [],
+};
 
 export default SortPopup;
-
-
-//pop up = выскакивать
-// лучше передавать ссылку на не анонимную функцию для оптимизации
-
-//проверяет был ли компонент обновлен,первый раз смонтирован, должен ли компонент удалиться
-//useEffect реагирует на первый рендер страницы(все остальные перерендеры старницы игнорирует по умолчанию если [])
-//[] список зависимостей.
-//[visiblePopUp]= реагирует  каждый раз когда visiblePopUp изменен

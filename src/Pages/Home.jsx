@@ -1,65 +1,63 @@
-import React from 'react'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import { Categories, SortPopUp } from '../components'
-import PizzaBlock from '../components/PizzaBlock/PizzaBlock'
-import PizzaLoadingBlock from '../components/PizzaBlock/PizzaLoadingBlock'
-import { useSelector,useDispatch  } from 'react-redux'
-import { seActiveItem, setCategory } from '../redux/action/filters'
-import {fetchPizzas}  from '../redux/action/pizzas';
 
-const categoryNames = ['Мясные', "Вегетарианская", "Гриль", "Острые", "Закрытые"]
+import { setCategory, setSortBy } from '../redux/actions/filters';
+import { fetchPizzas } from '../redux/actions/pizzas';
 
-const sortItems = [{name:'популярности',type:'popular'},{name:'цене',type: 'price'}, {name:'алфавиту',type: 'alphabet'}]
+const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые'];
+const sortIems = [
+  { name: 'популярности', type: 'popular', order: 'desc' },
+  { name: 'цене', type: 'price', order: 'desc' },
+  { name: 'алфавит', type: 'name', order: 'asc' },
+];
 
-function Home({  }) {
-    
-    const dispatch = useDispatch()
-    const items = useSelector(({pizzas }) => pizzas.items )// из этого объ вытаскивает только items // useSelector = подписка на хранилищие
-    const isLoaded = useSelector(({pizzas }) => pizzas.isLoaded )
-    const {category,sortBy} = useSelector(({filters }) => filters )
-    console.log(items)
+function Home() {
+  const dispatch = useDispatch();
+  const items = useSelector(({ pizzas }) => pizzas.items);
+  const isLoaded = useSelector(({ pizzas }) => pizzas.isLoaded);
+  const { category, sortBy } = useSelector(({ filters }) => filters);
 
-    React.useEffect(()=>{
-        dispatch(fetchPizzas(category))
-        
-      },[category,sortBy]
-      )
-      
-    function setctiveItem2(index){
-            dispatch(seActiveItem(index))
-    }
-        
-    const onSelectSortType = React.useCallback((index)=>{ //всесто создания каждый раз анонимной функции она мемоизируется. то есть ссылка на эту функцию больше не меняется
-        dispatch(setCategory(index))
-    },[])
+  React.useEffect(() => {
+    dispatch(fetchPizzas(sortBy, category));
+  }, [category, sortBy]);
 
-    return (
-        <div className="container">
-            <div className="content__top">
+  const onSelectCategory = React.useCallback((index) => {
+    dispatch(setCategory(index));
+  }, []);
 
-                <Categories //каждый раз когда будут меняться пиццы Categories будет делать ререндер. 
-                items={categoryNames}// тут по-сути ничего не меняется. реакт сверяет пропсы. смотрит изменилась у них ссылка или нет. если ссылка изменилась- нужно производить ререндер. под ссылками подразумеается изменения данных в переменных или своствах
-                activeCategory={category} 
-                onClickItem = {setctiveItem2}
-                />
+  const onSelectSortType = React.useCallback((type) => {
+    dispatch(setSortBy(type));
+  }, []);
 
-                <SortPopUp items={sortItems}  activeSortType={sortBy.type} onClickSortType={onSelectSortType}/> 
-
-            </div>
-            <h2 className="content__title">Все пиццы</h2>
-            <div className="content__items">
-
-                {isLoaded && items.map((pizza)=><PizzaBlock key = {pizza.id} isLoading = {true} {...pizza}/> )}
-                
-                {!isLoaded &&Array(10).fill(0).map((i,index)=><PizzaLoadingBlock key= {index}/>)}
-                
-            </div>
-        </div>
-    )
+  return (
+    <div className="container">
+      <div className="content__top">
+        <Categories
+          activeCategory={category}
+          onClickCategory={onSelectCategory}
+          items={categoryNames}
+        />
+        <SortPopup
+          activeSortType={sortBy.type}
+          items={sortIems}
+          onClickSortType={onSelectSortType}
+        />
+      </div>
+      <h2 className="content__title">Все пиццы</h2>
+      <div className="content__items">
+        {isLoaded
+          ? items.map((obj) => <PizzaBlock key={obj.id} isLoading={true} {...obj} />)
+          : Array(12)
+              .fill(0)
+              .map((_, index) => <PizzaLoadingBlock key={index} />)}
+      </div>
+    </div>
+  );
 }
 
-
-export default Home
-
+export default Home;
 
 
 
