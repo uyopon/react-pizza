@@ -2,9 +2,10 @@ import axios from 'axios';
 
 
 //fetchPizzas теперь ассинхрононный:)
-export const fetchPizzas = () =>(dispatch)=> { //fetch -  принести данные используют в контексте обращения к серверу
+export const fetchPizzas = (category,activeItem) =>(dispatch)=> { //fetch -  принести данные используют в контексте обращения к серверу
+    console.log(category)
     dispatch(setLoaded(false))
-    axios.get('http://localhost:3001/pizzas').then(({ data }) => {
+    axios.get(`http://localhost:3001/pizzas?${category !== null ? `category=${category}` : ''}`).then(({ data }) => {
         dispatch(setPizzas(data))
     })
 }

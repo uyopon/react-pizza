@@ -9,7 +9,7 @@ export const setCategory = (index) => ({
 })
 
 
-export const seActiveItem = (index) => ({
+export const seActiveItem = (index) => ({ /// индекс категори null 0  1 2 3 4 5
     type: 'SET_ACTIVE_ITEM',
     payload: index
 })

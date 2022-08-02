@@ -1,16 +1,21 @@
 const initialState = {
-    category: 0, //все. мсные. вегетерианские....
-    activeItem: 0
+    category: null, //все. мсные. вегетерианские....
+    sortBy: {
+        type: 'popular',
+        order: 'desc',
+      },
+    
+    
 }
 
 const filters = (state = initialState, action) => {
     switch (action.type) {
-        // case 'SET_SORT_BY': {
-        //     return {
-        //         ...state,
-        //         sortBy: action.payload
-        //     }
-        // }
+        case 'SET_SORT_BY': {
+            return {
+                ...state,
+                sortBy: action.payload
+            }
+        }
         case 'SET_CATEGORY': {
             return {
                 ...state,
@@ -18,14 +23,14 @@ const filters = (state = initialState, action) => {
 
             }
         }
-        case 'SET_ACTIVE_ITEM': {{
+        case 'SET_ACTIVE_ITEM': {
             return {
                 ...state,
-                activeItem: action.payload
+                category: action.payload
 
             }
-            
-        }}
+        }
+
 
 
         default:
